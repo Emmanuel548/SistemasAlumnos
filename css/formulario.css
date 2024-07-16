@@ -1,0 +1,14 @@
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+    height: 75vh;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+    height: 75vh;
+}

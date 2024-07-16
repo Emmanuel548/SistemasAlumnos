@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="librerias/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="white">
+        <div class="container-fluid">
+            <img src="img/logo.png" width="70" height="70">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Alumnos
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="formulario.html">Captura de Alumnos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Usuarios
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="usuarios.html">Captura de Usuarios</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row"></div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <center>
+                    <h1>Captura de Alumnos</h1>
+                </center>
+                <div class="form-group">
+                    <p id="lblNombre"></p>
+                    <label for="txtNombre">Nombre: </label>
+                    <input type="text" class="form-control" id="txtNombre" oninput="validarTexto(this)">
+                </div>
+                <div class="form-group">
+                    <p id="lblAPaterno"></p>
+                    <label for="txtAPaterno">A. Paterno: </label>
+                    <input type="text" class="form-control" id="txtAPaterno" oninput="validarTexto(this)">
+                </div>
+                <div class="form-group">
+                    <p id="lblAMaterno"></p>
+                    <label for="txtAMaterno">A. Materno: </label>
+                    <input type="text" class="form-control" id="txtAMaterno" oninput="validarTexto(this)">
+                </div>
+                <div class="form-group">
+                    <p id="lblNControl"></p>
+                    <label for="txtNControl">Núm. de Control: </label>
+                    <input type="text" class="form-control" id="txtNControl" oninput="validarNumero(this)">
+                </div>
+                <div class="form-group">
+                    <p id="lblFecha"></p>
+                    <label for="txtFecha">Fecha: </label>
+                    <input type="date" class="form-control" id="txtFecha">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="genero">Género:</label>
+                    <input type="radio" name="genero" id="generoM" value="m" checked>M
+                    <input type="radio" name="genero" id="generoF" value="f">F
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="comboBox">Carrera: </label>
+                    <select class="form-select" id="comboBox">
+                        <option value="">Seleccionar</option>
+                        <option value="Ing. Mecanica">Ing. Mecanica</option>
+                        <option value="Ing. Industrial">Ing. Industrial</option>
+                        <option value="Ing. Civil">Ing. Civil</option>
+                        <option value="Ing. en Sistemas">Ing. en Sistemas</option>
+                        <option value="Ing. Electronica">Ing. Electronica</option>
+                        <option value="Ing. Electrica">Ing. Electrica</option>
+                        <option value="Ing. Quimica">Ing. Quimica</option>
+                        <option value="Ing. en Gestión Emp">Ing. en Gestión Emp</option>
+                        <option value="Lic en Admin">Lic en Admin</option>
+                        <option value="Lic. en Cont. Pública">Lic. en Cont. Pública</option>
+                    </select>
+                </div>
+                <br>
+                <button type="button" class="btn btn-primary" id="btnGuardar" onclick="guardar()">Guardar</button>
+                <button type="button" class="btn btn-primary" id="btnLimpiar" onclick="limpiar()">Limpiar</button>
+                <!--VENTANA MODAL-->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalLabel">DATOS INGRESADOS</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p id="modalNombre"></p>
+                                <p id="modalAPaterno"></p>
+                                <P id="modalAMaterno"></P>
+                                <p id="modalControl"></p>
+                                <p id="modalFecha"></p>
+                                <p id="modalGenero"></p>
+                                <p id="modalCarrera"></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Si guardar registro</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--FIN DEL MODAL-->
+                <!-- Alerta de bootstrap -->
+                <br><div id="Alerta2" class="alert alert-danger d-none" role="alert">
+                    Por favor, completa todos los campos obligatorios.
+                </div>
+                <!-- Alerta de bootstrap 2 -->
+                <br><div id="Alerta3" class="alert alert-danger d-none" role="alert">
+                    Por favor, selecciona una carrera válida.
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+    <script src="librerias/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/utileria.js"></script>
+</body>
+</html>
